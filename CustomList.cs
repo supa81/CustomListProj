@@ -55,7 +55,7 @@ namespace CustomListClass
                 capacity = + -1;
             }
         }
-        public int AddTwoListTogether()
+        public int AddTwoListTogether(T item)
         {
             CustomList<int> oddNumbers = new CustomList<int>();
             CustomList<int> evenNumbers = new CustomList<int>();
@@ -63,10 +63,27 @@ namespace CustomListClass
 
             if (oddNumbers == evenNumbers)
             {
-               result = oddNumbers && evenNumbers;
+              return result = oddNumbers + evenNumbers;
             }
            
         }
-        
-    }
+        public void SubtractoneInstanceFromList()
+        {
+            CustomList<int> oddNumbers = new CustomList<int>() { 1, 3, 5 };
+            CustomList<int> evenNumbers = new CustomList<int>() { 2, 4, 6 };
+            CustomList<int> result = oddNumbers + evenNumbers;
+            if (count == capacity)
+            {
+                T[] name = new T[capacity];
+                name[capacity] = name[capacity];
+                count = +-1;
+                oddNumbers.count = capacity;
+                
+            }
+            
+               
+            
+        }
+
+    }  
 }
