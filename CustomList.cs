@@ -1,0 +1,72 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace CustomListClass
+{
+    public class CustomList<T>
+    {
+        //MEMBER VARIABLES
+
+        private T[] items;
+        int count; // number of items in customlist
+        int capacity; //array length 
+        
+        //CONSTRUCTOR
+        public CustomList()
+        {
+            count = 0;
+            capacity = 4;
+            items = new T[capacity];
+        }
+        //MEMBER METHODS
+        public void Add(T item)
+        {
+            
+            items[count] = item;
+            count++;
+            //work on the condition listed below
+             
+            if (count == capacity)
+            {
+                T[] name = new T[4];
+                name[capacity] = name[capacity];
+                capacity++;
+            }
+            // only "if" capacity is surpassed then make new array 
+            //CustomList<T> name = new CustomList<T>();
+            //for (int i = 0; i < count; i++)
+            //{
+            //    return name;
+            //}
+           
+        }
+        public void Remove(T item)
+        {
+            
+            items[count] =  item;
+            count = -1;
+            if (count == capacity)
+            {
+                T[] name = new T[capacity];
+                name[capacity] = name[capacity];
+                capacity = + -1;
+            }
+        }
+        public int AddTwoListTogether()
+        {
+            CustomList<int> oddNumbers = new CustomList<int>();
+            CustomList<int> evenNumbers = new CustomList<int>();
+            int result;
+
+            if (oddNumbers == evenNumbers)
+            {
+               result = oddNumbers && evenNumbers;
+            }
+           
+        }
+        
+    }
+}
