@@ -12,7 +12,10 @@ namespace CustomListClass
 
         private T[] items;
         int count; // number of items in customlist
+        public int Count { get => count;}
         int capacity; //array length 
+        public int Capacity { get => capacity;}
+        string name;
         
         //CONSTRUCTOR
         public CustomList()
@@ -31,10 +34,11 @@ namespace CustomListClass
              
             if (count == capacity)
             {
-                T[] name = new T[4];
+                T[] name = new T[capacity * 2];
                 name[capacity] = name[capacity];
                 capacity++;
             }
+
             // only "if" capacity is surpassed then make new array 
             //CustomList<T> name = new CustomList<T>();
             //for (int i = 0; i < count; i++)
@@ -43,10 +47,26 @@ namespace CustomListClass
             //}
            
         }
-        public void Remove(T item)
+        public void DoubledArrayCapacity()
         {
+            capacity = capacity * 2;
+            T[] tempArray = new T[capacity];
+            for (int i = 0; i < Count; i++)
+            {
+                tempArray[i] = items[i];
+                //set temp array = to items array index by index
+                //dont wana hard code the number
+                //outside for loop items = temp array 
+            }
+            items = tempArray;
+        }
+        public void Remove(T item)
+        {//check to see if item is in list 
+            //copy array without the element then make new array with out the item 
+
             
-            items[count] =  item;
+            
+            items[count] = item;
             count = -1;
             if (count == capacity)
             {
@@ -69,21 +89,23 @@ namespace CustomListClass
         }
         public void SubtractoneInstanceFromList()
         {
-            CustomList<int> oddNumbers = new CustomList<int>() { 1, 3, 5 };
-            CustomList<int> evenNumbers = new CustomList<int>() { 2, 4, 6 };
-            CustomList<int> result = oddNumbers + evenNumbers;
+            CustomList<T> oddNumbers = new CustomList<T>() { 1, 3, 5 };
+            CustomList<T> evenNumbers = new CustomList<T>() { 2, 4, 6 };
+            CustomList<T> result = oddNumbers + evenNumbers;
             if (count == capacity)
             {
                 T[] name = new T[capacity];
                 name[capacity] = name[capacity];
                 count = +-1;
                 oddNumbers.count = capacity;
-                
             }
-            
-               
-            
+        }
+        public override string ConvertToString()
+        {
+
+            CustomList<int> oddNumbers = new CustomList<int>();
+            oddNumbers.ConvertToString();
         }
 
-    }  
+    }
 }
