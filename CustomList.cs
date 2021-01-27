@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,25 +28,53 @@ namespace CustomListClass
         //MEMBER METHODS
         public void Add(T item)
         {
-            
             items[count] = item;
             count++;
             //work on the condition listed below
              
             if (count == capacity)
             {
-                T[] name = new T[capacity * 2];
-                name[capacity] = name[capacity];
-                capacity++;
+             
+                DoubledArrayCapacity();
             }
-
             // only "if" capacity is surpassed then make new array 
             //CustomList<T> name = new CustomList<T>();
             //for (int i = 0; i < count; i++)
             //{
             //    return name;
             //}
-           
+        }
+        public void Remove(T item)
+        {   //check to see if item is in list 
+            //copy array without the element then make new array with out the item 
+            //items[count] = item;
+            //count = -1;
+            //T[] name = new T[count];
+            for (int i = 0; i < Count; i++)//i goes up to look at each index
+            {
+                //items[i]: is this the item?
+                //if items[i] is item: do onething make new array
+                //if not, do something else return null?
+                
+            }
+
+
+            //items = name;
+            T[] tempArray = new T[count];
+            for (int i = 0; i < Count; i = +-1)
+            {
+                tempArray[i] = items[i];
+            }
+            items = tempArray;
+            
+
+            //foreach ( int items in name)
+            //{
+            ////    T[] name = new T[count];
+            //    name[count] = name[count];
+            //    count = +-1;
+            //    T[] tempArray = new T[capacity];
+            //}
         }
         public void DoubledArrayCapacity()
         {
@@ -60,38 +89,24 @@ namespace CustomListClass
             }
             items = tempArray;
         }
-        public void Remove(T item)
-        {//check to see if item is in list 
-            //copy array without the element then make new array with out the item 
-
-            
-            
-            items[count] = item;
-            count = -1;
-            if (count == capacity)
-            {
-                T[] name = new T[capacity];
-                name[capacity] = name[capacity];
-                capacity = + -1;
-            }
-        }
-        public int AddTwoListTogether(T item)
+       
+        public void AddTwoListTogether(T item)
         {
-            CustomList<int> oddNumbers = new CustomList<int>();
-            CustomList<int> evenNumbers = new CustomList<int>();
-            int result;
+            CustomList<int> oddNumbers = new CustomList<int>(); { 1, 3, 5};
+            CustomList<int> evenNumbers = new CustomList<int>();{ 2, 4, 6};
+            CustomList<int> result = oddNumbers.join(evenNumbers);
 
-            if (oddNumbers == evenNumbers)
+            if ( oddNumbers ==  evenNumbers)
             {
-              return result = oddNumbers + evenNumbers;
+                return result = oddNumbers + evenNumbers;
             }
            
         }
         public void SubtractoneInstanceFromList()
         {
-            CustomList<T> oddNumbers = new CustomList<T>() { 1, 3, 5 };
-            CustomList<T> evenNumbers = new CustomList<T>() { 2, 4, 6 };
-            CustomList<T> result = oddNumbers + evenNumbers;
+            CustomList<IEnumerable> oddNumbers = new CustomList<IEnumerable>();
+            CustomList<IEnumerable> evenNumbers = new CustomList<IEnumerable>();
+            CustomList<IEnumerable> result = oddNumbers.items + evenNumbers;
             if (count == capacity)
             {
                 T[] name = new T[capacity];
