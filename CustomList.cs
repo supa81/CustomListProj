@@ -5,19 +5,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CustomListClass
+namespace CustomListClass 
 {
-    public class CustomList<T>
+    public class CustomList<T> : IEnumerator
     {
         //MEMBER VARIABLES
 
         private T[] items;
         int count; // number of items in customlist
-        public int Count { get => count;}
+        public int Count { get => count; }
         int capacity; //array length 
-        public int Capacity { get => capacity;}
+        public int Capacity { get => capacity; }
         string name;
-        
+
         //CONSTRUCTOR
         public CustomList()
         {
@@ -31,10 +31,10 @@ namespace CustomListClass
             items[count] = item;
             count++;
             //work on the condition listed below
-             
+
             if (count == capacity)
             {
-             
+
                 DoubledArrayCapacity();
             }
             // only "if" capacity is surpassed then make new array 
@@ -50,29 +50,37 @@ namespace CustomListClass
             //items[count] = item;
             //count = -1;
             //T[] name = new T[count];
+            bool hasItem = false;
+            T[] tempArray = new T[capacity];
             for (int i = 0; i < Count; i++)//i goes up to look at each index
             {
                 //items[i]: is this the item?
                 //if items[i] is item: do onething make new array
                 //if not, do something else return null?
-                
+
+                if (items[i].Equals(item) && hasItem == false )
+                {//if item
+                    hasItem = true;
+                    count--;
+                   
+                    
+                    
+                   // not include it in new list 
+                   
+                }
+                else if (!items[i].Equals(item) && hasItem == true)
+                {
+                    tempArray[i] = items[i];
+                    //keep on list 
+                }
+                // look at bool "hasitem" = true we have already encountered and removed that value 
+                //add the second instance.
             }
-
-
-            //items = name;
-            T[] tempArray = new T[count];
-            for (int i = 0; i < Count; i = +-1)
-            {
-                tempArray[i] = items[i];
-            }
-            items = tempArray;
-            
-
             //foreach ( int items in name)
             //{
             ////    T[] name = new T[count];
             //    name[count] = name[count];
-            //    count = +-1;
+            //    count--
             //    T[] tempArray = new T[capacity];
             //}
         }
@@ -90,37 +98,64 @@ namespace CustomListClass
             items = tempArray;
         }
        
-        public void AddTwoListTogether(T item)
+        public IEnumerable AddTwoListTogether(T item)
+             
         {
             CustomList<int> oddNumbers = new CustomList<int>(); { 1, 3, 5};
-            CustomList<int> evenNumbers = new CustomList<int>();{ 2, 4, 6};
+            CustomList<int> evenNumbers = new CustomList<int>(); { 2, 4, 6};
             CustomList<int> result = oddNumbers.join(evenNumbers);
 
-            if ( oddNumbers ==  evenNumbers)
+            if (oddNumbers == evenNumbers)
             {
-                return result = oddNumbers + evenNumbers;
+                yield return oddNumbers;
+                yield return evenNumbers;
             }
-           
+            else 
+            {
+
+            }
+
         }
-        public void SubtractoneInstanceFromList()
+        public void SubtractoneInstanceFromList(T item)
         {
-            CustomList<IEnumerable> oddNumbers = new CustomList<IEnumerable>();
-            CustomList<IEnumerable> evenNumbers = new CustomList<IEnumerable>();
-            CustomList<IEnumerable> result = oddNumbers.items + evenNumbers;
-            if (count == capacity)
+            CustomList<int> oddNumbers = new CustomList<int>();
+            CustomList<int> evenNumbers = new CustomList<int>();
+            CustomList<int> result = oddNumbers.join(evenNumbers);
+            bool hasItem = false;
+            T[] tempArray = new T[capacity];
+            oddNumbers.count = count;
+            //T[] name = new T[count];
+            //name[count] = name[count];
+            //count--;
+
+            for (int i = 0; i < Count; i++)
             {
-                T[] name = new T[capacity];
-                name[capacity] = name[capacity];
-                count = +-1;
-                oddNumbers.count = capacity;
+                if (items[i].Equals(item))
+                {
+                    hasItem = true;
+                    count--;
+                    //removes one instance off list
+                }
+                else if (!items[i].Equals(item) && hasItem == true)
+                {
+                    tempArray[i] = items[i];
+                    //keep same list 
+            
+                }  
+            
+            
             }
+            
         }
         public override string ConvertToString()
         {
 
             CustomList<int> oddNumbers = new CustomList<int>();
             oddNumbers.ConvertToString();
+            
         }
+
+
 
     }
 }
