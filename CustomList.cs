@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CustomListClass 
 {
-    public class CustomList<T> : IEnumerator
+    public class CustomList<T> : IEnumerable
     {
         //MEMBER VARIABLES
 
@@ -97,23 +97,34 @@ namespace CustomListClass
             }
             items = tempArray;
         }
-       
-        public IEnumerable AddTwoListTogether(T item)
-             
+        public static CustomList<T> operator +(CustomList<T> oddNumbers, T evenNumbers)
+
         {
-            CustomList<int> oddNumbers = new CustomList<int>(); { 1, 3, 5};
-            CustomList<int> evenNumbers = new CustomList<int>(); { 2, 4, 6};
-            CustomList<int> result = oddNumbers.join(evenNumbers);
+            var oddNumber = new CustomList<int> {1, 3, 5}; 
 
-            if (oddNumbers == evenNumbers)
-            {
-                yield return oddNumbers;
-                yield return evenNumbers;
-            }
-            else 
-            {
+            var evenNumber = new CustomList<int> {2, 4, 6};
 
-            }
+            var numberList = new CustomList<int> { 1, 3, 5, 2, 4, 6 };
+
+            oddNumbers.Add(evenNumbers);
+            return oddNumbers;
+            
+        }
+        //public IEnumerable<int> AddTwoListTogether(T item)
+             
+        //{
+        //    CustomList<int> oddNumbers = new CustomList<int>(); { 1, 3, 5};
+        //    CustomList<int> evenNumbers = new CustomList<int>(); { 2, 4, 6};
+        //    CustomList<int> result = oddNumbers + evenNumbers
+
+        //    if (oddNumbers == evenNumbers)
+        //    {
+                
+        //    }
+        //    else 
+        //    {
+
+        //    }
 
         }
         public void SubtractoneInstanceFromList(T item)
@@ -147,15 +158,46 @@ namespace CustomListClass
             }
             
         }
-        public override string ConvertToString()
+        public override string ToString()
         {
-
-            CustomList<int> oddNumbers = new CustomList<int>();
-            oddNumbers.ConvertToString();
+            // write the logic that takes what's in your list and converts it to a string
+            // take the array's contents and convert each to a string
+            // return a SINGLE string
             
+            CustomList<int> oddNumbers = new CustomList<int>();
+            CustomList<int> evenNumbers = new CustomList<int>();
+            oddNumbers.Add(1);
+            oddNumbers.Add(3);
+            oddNumbers.Add(5);
+            evenNumbers.Add(2);
+            evenNumbers.Add(4);
+            evenNumbers.Add(6);
+
+
+            StringBuilder builder = new StringBuilder();
+            foreach (int numbers in oddNumbers)
+            {
+                builder.Append(oddNumbers).Append("1");
+                builder.Append(oddNumbers).Append("3");
+                builder.Append(oddNumbers).Append("5");
+                foreach (int number in evenNumbers)
+                {
+                    builder.Append(evenNumbers).Append("2");
+                    builder.Append(evenNumbers).Append("4");
+                    builder.Append(evenNumbers).Append("6");
+                }
+            }
+            string result = builder.ToString(AddTwoListTogether);
+
+
+            return "Numbers List " + oddNumbers + evenNumbers;
+
+
         }
 
-
-
+        public IEnumerator GetEnumerator()
+        {
+            return items.GetEnumerator();
+        }
     }
 }

@@ -12,6 +12,8 @@ namespace CustomListClass
         {    // T = string
             CustomList<string> list = new CustomList<string>();
             list = new CustomList<string>();
+
+            
         }
     }
 }
