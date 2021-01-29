@@ -97,47 +97,50 @@ namespace CustomListClass
             }
             items = tempArray;
         }
-        public static CustomList<T> operator +(CustomList<T> oddNumbers, T evenNumbers)
+        public static CustomList<T> operator +(CustomList<T> listOne, CustomList<T> listTwo)
 
         {
-            var oddNumber = new CustomList<int> {1, 3, 5}; 
-
-            var evenNumber = new CustomList<int> {2, 4, 6};
-
-            var numberList = new CustomList<int> { 1, 3, 5, 2, 4, 6 };
-
-            oddNumbers.Add(evenNumbers);
-            return oddNumbers;
-            
-        }
-        //public IEnumerable<int> AddTwoListTogether(T item)
-             
-        //{
-        //    CustomList<int> oddNumbers = new CustomList<int>(); { 1, 3, 5};
-        //    CustomList<int> evenNumbers = new CustomList<int>(); { 2, 4, 6};
-        //    CustomList<int> result = oddNumbers + evenNumbers
-
-        //    if (oddNumbers == evenNumbers)
-        //    {
+            CustomList<T> newList = new CustomList<T>();
+            for (int i = 0; i < listOne.Count; i++)
+            {
+                newList.Add(listOne[i]);
                 
-        //    }
-        //    else 
-        //    {
+            }
+            for (int i = 0; i < listTwo.Count; i++)
+            {
+                newList.Add(listTwo[i]);
+            }
+            return newList;
+        }
+        public static CustomList<T> operator -(CustomList<T> listOne, T listTwo) //fix!!!
 
-        //    }
+        {
+            var listOneItems = new CustomList<int>();
 
+            var listTwoItems = new CustomList<int>(); 
+
+            var resultList = listOne - listTwo; 
+            for (int i = 0; i < listOneItems.Count; i++)
+            {
+                resultList.Add(listTwo);
+            }
+            return resultList;
+
+        }
+
+        public T this[int i]
+        {
+            set { items[i] = value; }
+            get { return items[i]; }
         }
         public void SubtractoneInstanceFromList(T item)
         {
             CustomList<int> oddNumbers = new CustomList<int>();
             CustomList<int> evenNumbers = new CustomList<int>();
-            CustomList<int> result = oddNumbers.join(evenNumbers);
+            //CustomList<int> result = oddNumbers + evenNumbers;
             bool hasItem = false;
             T[] tempArray = new T[capacity];
             oddNumbers.count = count;
-            //T[] name = new T[count];
-            //name[count] = name[count];
-            //count--;
 
             for (int i = 0; i < Count; i++)
             {
@@ -153,50 +156,29 @@ namespace CustomListClass
                     //keep same list 
             
                 }  
-            
-            
             }
-            
         }
         public override string ToString()
         {
-            // write the logic that takes what's in your list and converts it to a string
-            // take the array's contents and convert each to a string
-            // return a SINGLE string
+            string result = "";
+            string capture = "";
             
-            CustomList<int> oddNumbers = new CustomList<int>();
-            CustomList<int> evenNumbers = new CustomList<int>();
-            oddNumbers.Add(1);
-            oddNumbers.Add(3);
-            oddNumbers.Add(5);
-            evenNumbers.Add(2);
-            evenNumbers.Add(4);
-            evenNumbers.Add(6);
-
-
-            StringBuilder builder = new StringBuilder();
-            foreach (int numbers in oddNumbers)
+            for (int i = 0; i < items.Length ; i++) 
             {
-                builder.Append(oddNumbers).Append("1");
-                builder.Append(oddNumbers).Append("3");
-                builder.Append(oddNumbers).Append("5");
-                foreach (int number in evenNumbers)
-                {
-                    builder.Append(evenNumbers).Append("2");
-                    builder.Append(evenNumbers).Append("4");
-                    builder.Append(evenNumbers).Append("6");
-                }
+                capture = items[i].ToString();
+                capture = capture + result;
+
             }
-            string result = builder.ToString(AddTwoListTogether);
+            return capture;
+            // we need to take all of items (the array) and turn it into one string
 
+            // declare a string variable that captures all of our items?
+            // then return that string?
 
-            return "Numbers List " + oddNumbers + evenNumbers;
-
-
+            // go one by one through the array and add it to the result
         }
-
         public IEnumerator GetEnumerator()
-        {
+        {//for loop cycle through list utilize yeild return current index [i]
             return items.GetEnumerator();
         }
     }
